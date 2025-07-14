@@ -817,7 +817,11 @@ pub fn transfer(from_pubkey: &Pubkey, to_pubkey: &Pubkey, lamports: u64) -> Inst
         AccountMeta::new(*from_pubkey, true),
         AccountMeta::new(*to_pubkey, false),
     ];
-    Instruction::new_with_bincode(ID, &SystemInstruction::Transfer { lamports }, account_metas)
+    Instruction::new_with_bincode(
+        ID.into(),
+        &SystemInstruction::Transfer { lamports },
+        account_metas,
+    )
 }
 
 #[cfg(feature = "bincode")]
@@ -1012,7 +1016,11 @@ pub fn transfer_with_seed(
 #[cfg(feature = "bincode")]
 pub fn allocate(pubkey: &Pubkey, space: u64) -> Instruction {
     let account_metas = vec![AccountMeta::new(*pubkey, true)];
-    Instruction::new_with_bincode(ID, &SystemInstruction::Allocate { space }, account_metas)
+    Instruction::new_with_bincode(
+        ID.into(),
+        &SystemInstruction::Allocate { space },
+        account_metas,
+    )
 }
 
 #[cfg(feature = "bincode")]
@@ -1483,7 +1491,11 @@ pub fn advance_nonce_account(nonce_pubkey: &Pubkey, authorized_pubkey: &Pubkey) 
         AccountMeta::new_readonly(RECENT_BLOCKHASHES_ID, false),
         AccountMeta::new_readonly(*authorized_pubkey, true),
     ];
-    Instruction::new_with_bincode(ID, &SystemInstruction::AdvanceNonceAccount, account_metas)
+    Instruction::new_with_bincode(
+        ID.into(),
+        &SystemInstruction::AdvanceNonceAccount,
+        account_metas,
+    )
 }
 
 /// Withdraw lamports from a durable transaction nonce account.
@@ -1663,7 +1675,11 @@ pub fn authorize_nonce_account(
 #[cfg(feature = "bincode")]
 pub fn upgrade_nonce_account(nonce_pubkey: Pubkey) -> Instruction {
     let account_metas = vec![AccountMeta::new(nonce_pubkey, /*is_signer:*/ false)];
-    Instruction::new_with_bincode(ID, &SystemInstruction::UpgradeNonceAccount, account_metas)
+    Instruction::new_with_bincode(
+        ID.into(),
+        &SystemInstruction::UpgradeNonceAccount,
+        account_metas,
+    )
 }
 
 #[cfg(feature = "bincode")]
