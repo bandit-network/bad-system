@@ -415,7 +415,7 @@ pub fn create_account(
         AccountMeta::new(*to_pubkey, true),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::CreateAccount {
             lamports,
             space,
@@ -444,7 +444,7 @@ pub fn create_account_with_seed(
     ];
 
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::CreateAccountWithSeed {
             base: *base,
             seed: seed.to_string(),
@@ -621,7 +621,7 @@ pub fn create_account_with_seed(
 pub fn assign(pubkey: &Pubkey, owner: &Pubkey) -> Instruction {
     let account_metas = vec![AccountMeta::new(*pubkey, true)];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::Assign { owner: *owner },
         account_metas,
     )
@@ -639,7 +639,7 @@ pub fn assign_with_seed(
         AccountMeta::new_readonly(*base, true),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::AssignWithSeed {
             base: *base,
             seed: seed.to_string(),
@@ -835,7 +835,7 @@ pub fn transfer_with_seed(
         AccountMeta::new(*to_pubkey, false),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::TransferWithSeed {
             lamports,
             from_seed,
@@ -1028,7 +1028,7 @@ pub fn allocate_with_seed(
         AccountMeta::new_readonly(*base, true),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::AllocateWithSeed {
             base: *base,
             seed: seed.to_string(),
@@ -1574,7 +1574,7 @@ pub fn withdraw_nonce_account(
         AccountMeta::new_readonly(*authorized_pubkey, true),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::WithdrawNonceAccount(lamports),
         account_metas,
     )
@@ -1652,7 +1652,7 @@ pub fn authorize_nonce_account(
         AccountMeta::new_readonly(*authorized_pubkey, true),
     ];
     Instruction::new_with_bincode(
-        ID,
+        ID.into(),
         &SystemInstruction::AuthorizeNonceAccount(*new_authority),
         account_metas,
     )

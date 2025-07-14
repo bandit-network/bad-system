@@ -1,9 +1,6 @@
 [workspace]
 resolver = "2"
-members = [
-    "clients/rust",
-    "interface",
-]
+members = ["clients/rust", "interface"]
 
 [workspace.package]
 authors = ["Anza Maintainers <maintainers@anza.xyz>"]
@@ -27,3 +24,4 @@ solana-program = { version = "2.2.1", default-features = false }
 solana-program-entrypoint = "2.2.1"
 solana-program-error = "2.2.1"
 solana-pubkey = { version = "2.2.1", default-features = false }
+badchain-pubkey = { git = "https://github.com/bandit-network/bad-solana-sdk", branch = "master-interface" }
